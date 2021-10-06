@@ -40,9 +40,6 @@ def test_get_largest_prime_below():
     assert get_largest_prime_below(1) is False
 
 
-test_get_largest_prime_below()
-
-
 def get_age_in_days(birthday, today):
     """
     Returneaza varsta in zile a persoane a carei data a nasterii a fost introdusa
@@ -61,9 +58,6 @@ def get_age_in_days(birthday, today):
     ty = int(today[6:10])
     ds = 0
     month = [31, 29, 30, 31, 30, 31, 30, 31, 30, 31, 30, 31]
-
-
-
 
     # adaugam zilele trecute din anul curent
     ds = ds + td
@@ -84,27 +78,57 @@ def get_age_in_days(birthday, today):
     return ds
 
 
-def test_get_largest_prime_below():
+def test_get_age_in_days():
     assert get_age_in_days("16/01/2003", "05/10/2021") == 6837
 
+
+# problema 6 din lab2
+def is_antipalindrome(n) -> bool:
+    """
+    Functia determina daca un numar sau un cuvant este antipalindrom sau nu
+    Metoda: verificarea elemtelor simetrice din lista, in functie de mijlocul listei
+    :param n: variabila de tip string ce poate contine un cuvant sau un numar
+    :return: True daca elementul este palindrom, False daca nu este palindrom
+    """
+    l = len(n) // 2
+    for i in range(0, l):
+        if len(n) % 2 == 1:
+            if n[i] == n[-i + 1]:
+                return False
+        elif n[i] == n[-i]:
+            return False
+    return True
+
+
+def test_is_antipalindrome():
+ #   assert is_antipalindrome("mara") is False
+ #   assert is_antipalindrome("hannah") is True
+    assert is_antipalindrome("12321") is True
+    assert is_antipalindrome("123322") is False
+    assert is_antipalindrome(("6")) is True
 
 
 def main():
     shouldRun = True
     while shouldRun:
-        print("Alegeti optiunea 1 sau 2 in functie de exercitiul ales"
+        print("Alegeti optiunea 1, 2 sau 3 in functie de exercitiul ales"
               " sau x daca doriti sa iesiti")
         optiune = input("Scrieti optiunea: ")
         if optiune == "x":
             shouldRun = False
         if optiune == "1":
+            test_get_largest_prime_below()
             n = int(input("Scrieti numarul :"))
-            print(get_largest_prime_below(n))
+            print("Rezultat: ",get_largest_prime_below(n))
         if optiune == "2":
+            test_get_age_in_days()
             birthday = input("Introduceti data nasterii, in formatul DD/MM/YYYY : ")
             today = input("Introduceti data curenta, in formatul DD/MM/YYYY : ")
-            test_get_largest_prime_below()
-            print(get_age_in_days(birthday, today))
+            print("Rezultat: ",get_age_in_days(birthday, today))
+        if optiune == "3":
+            test_is_antipalindrome()
+            n = input("introduceeti numarul sau cuvantul: ")
+            print("Rezultat: ", is_antipalindrome(n))
 
 
 main()
