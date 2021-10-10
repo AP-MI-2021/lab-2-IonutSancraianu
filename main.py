@@ -88,7 +88,7 @@ def is_antipalindrome(n) -> bool:
     Functia determina daca un numar sau un cuvant este antipalindrom sau nu
     Metoda: verificarea elemtelor simetrice din lista, in functie de mijlocul listei
     :param n: variabila de tip string ce poate contine un cuvant sau un numar
-    :return: True daca elementul este palindrom, False daca nu este palindrom
+    :return: True daca elementul este antipalindrom, False daca nu este antipalindrom
     """
     l = len(n) // 2
     for i in range(0, l):
