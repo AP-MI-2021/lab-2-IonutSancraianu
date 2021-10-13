@@ -40,7 +40,7 @@ def test_get_largest_prime_below():
     assert get_largest_prime_below(1) is False
 
 
-def get_age_in_days(birthday, today):
+def get_age_in_days(birthday):
     """
     Returneaza varsta in zile a persoane a carei data a nasterii a fost introdusa
     :param birthday: Lista ce contine data nasterii, de forma DD/MM/YYYY
@@ -51,7 +51,7 @@ def get_age_in_days(birthday, today):
     bd = int(birthday[0:2])
     bm = int(birthday[3:5])
     by = int(birthday[6:10])
-
+    today = "05/10/2021"
     # ziua, luna si anul din prezent
     td = int(today[0:2])
     tm = int(today[3:5])
@@ -79,36 +79,32 @@ def get_age_in_days(birthday, today):
 
 
 def test_get_age_in_days():
-    assert get_age_in_days("16/01/2003", "05/10/2021") == 6837
+    assert get_age_in_days("16/01/2003") == 6837
 
 
 # problema 6 din lab2
 def is_antipalindrome(n) -> bool:
     """
-    Functia determina daca un numar sau un cuvant este antipalindrom sau nu
+    Functia determina daca un numar este antipalindrom sau nu
     Metoda: verificarea elemtelor simetrice din lista, in functie de mijlocul listei
     :param n: variabila de tip string ce poate contine un cuvant sau un numar
     :return: True daca elementul este antipalindrom, False daca nu este antipalindrom
     """
-    l = len(n) // 2
-    for i in range(0, l):
-        if len(n) % 2 == 1:
-            if n[i] == n[-i + 1]:
-                return False
-        elif n[i] == n[-i]:
-            return False
+    if n == n[::-1]:
+        return False
     return True
 
 
 def test_is_antipalindrome():
- #   assert is_antipalindrome("mara") is False
- #   assert is_antipalindrome("hannah") is True
-    assert is_antipalindrome("12321") is True
-    assert is_antipalindrome("123322") is False
-    assert is_antipalindrome(("6")) is True
+    assert is_antipalindrome("12321") is False
+    assert is_antipalindrome("123322") is True
+    assert is_antipalindrome("6") is False
 
 
 def main():
+    test_is_antipalindrome()
+    test_get_largest_prime_below()
+    test_get_age_in_days()
     shouldRun = True
     while shouldRun:
         print("Alegeti optiunea 1, 2 sau 3 in functie de exercitiul ales"
@@ -116,23 +112,21 @@ def main():
         optiune = input("Scrieti optiunea: ")
         if optiune == "x":
             shouldRun = False
-        if optiune == "1":
-            test_get_largest_prime_below()
+        elif optiune == "1":
             n = int(input("Scrieti numarul :"))
             print("Rezultat: ",get_largest_prime_below(n))
-        if optiune == "2":
-            test_get_age_in_days()
+        elif optiune == "2":
             birthday = input("Introduceti data nasterii, in formatul DD/MM/YYYY : ")
-            today = input("Introduceti data curenta, in formatul DD/MM/YYYY : ")
-            print("Rezultat: ",get_age_in_days(birthday, today))
-        if optiune == "3":
-            test_is_antipalindrome()
-            n = input("introduceeti numarul sau cuvantul: ")
+            print("Rezultat: ",get_age_in_days(birthday))
+        elif optiune == "3":
+            n = input("introduceeti numarul: ")
             print("Rezultat: ", is_antipalindrome(n))
+        else:
+            print("Optiune incorecta. Reincercati! ")
 
 
-main()
-
+if __name__ == '__main__':
+    main()
 
 
 #done
