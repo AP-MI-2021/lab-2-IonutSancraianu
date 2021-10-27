@@ -49,7 +49,7 @@ def get_age_in_days(birthday):
     """
     # ziua, luna si anul nasterii
     bd = int(birthday[0:2])
-    bm = int(birthday[3:5])
+    bm = int(birthday[3:5]) - 1
     by = int(birthday[6:10])
     today = "05/10/2021"
     # ziua, luna si anul din prezent
@@ -79,7 +79,7 @@ def get_age_in_days(birthday):
 
 
 def test_get_age_in_days():
-    assert get_age_in_days("16/01/2003") == 6837
+    assert get_age_in_days("16/01/2003") == 6868
 
 
 # problema 6 din lab2
